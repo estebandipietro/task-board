@@ -1,30 +1,22 @@
-# React + TypeScript + Vite
+# Tasks Board
+Using React, develop a Board with 4 columns:  `BACKLOG` `TODO` `DOING` `DONE`
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Considerations:
+* Cards can only be moved by one column in any direction.
+* There can only be two cards in DOING at any time
+* Once in Done, cards cannot go back
+* Moving cards to DONE will trigger a confirmation dialog
+* All actions on the board must be validated client-side
+* Board to be stored in Local Storage
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Decision:
+* The scaffolding is divided in:
+  * components: holds the Board, Column and Card componenets
+  * logic: has the validations rules file and the logic for the card movement
+  * types: the types for all the app
+  * utils: has a file for accessing the local storage
+* Used '@hello-pangea/dnd' instead of 'react-beautiful-dnd' because of the lack of support and maintenance of the last one
+* There is an implementation of the strategy pattern in validationsV2
+* The example board data is placed in the App component
+* For the sake of keep it simple, I didn't consider any user interaction besides moving the cards
+* In the same spirit, there is no user feedback for movements errors
