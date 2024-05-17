@@ -19,4 +19,3 @@ Using React, develop a Board with 4 columns:  `BACKLOG` `TODO` `DOING` `DONE`
 * There is an implementation of the strategy pattern in validationsV2
 * The example board data is placed in the App component
 * For the sake of keep it simple, I didn't consider any user interaction besides moving the cards
-* In the same spirit, there is no user feedback for movements errors

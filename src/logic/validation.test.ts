@@ -11,31 +11,28 @@ const boardData: BoardType = {
 
 describe('canMoveCard', () => {
     test('should allow moving a card to the adjacent column', () => {
-        expect(canMoveCard(boardData, 'backlog', 'todo')).toBe(true);
-        expect(canMoveCard(boardData, 'todo', 'backlog')).toBe(true);
-        expect(canMoveCard(boardData, 'todo', 'doing')).toBe(true);
-        expect(canMoveCard(boardData, 'doing', 'todo')).toBe(true);
-        expect(canMoveCard(boardData, 'doing', 'done')).toBe(true);
+        expect(canMoveCard(boardData, 'backlog', 'todo')).toEqual({ canMove: true, error: '' });
+        expect(canMoveCard(boardData, 'todo', 'backlog')).toEqual({ canMove: true, error: '' });
+        expect(canMoveCard(boardData, 'todo', 'doing')).toEqual({ canMove: true, error: '' });
+        expect(canMoveCard(boardData, 'doing', 'todo')).toEqual({ canMove: true, error: '' });
+        expect(canMoveCard(boardData, 'doing', 'done')).toEqual({ canMove: true, error: '' });
     });
 
     test('should not allow moving a card more than one column away', () => {
-        expect(canMoveCard(boardData, 'backlog', 'doing')).toBe(false);
-        expect(canMoveCard(boardData, 'todo', 'done')).toBe(false);
+        expect(canMoveCard(boardData, 'backlog', 'doing')).toEqual({ canMove: false, error: 'Cards can only be moved by one column in any direction' });
+        expect(canMoveCard(boardData, 'todo', 'done')).toEqual({ canMove: false, error: 'Cards can only be moved by one column in any direction' });
     });
 
-    test('should not allow more than two cards in the DOING column', () => {
+    test('should not allow moving a card to DOING if there are already two cards', () => {
         const boardWithTwoDoing = {
             ...boardData,
-            doing: [
-                { id: 'task3', content: 'Task 3' },
-                { id: 'task5', content: 'Task 5' },
-            ],
+            doing: [{ id: '3', content: 'Task 3' }, { id: '4', content: 'Task 4' }],
         };
-        expect(canMoveCard(boardWithTwoDoing, 'todo', 'doing')).toBe(false);
+        expect(canMoveCard(boardWithTwoDoing, 'todo', 'doing')).toEqual({ canMove: false, error: 'There can only be two cards in the DOING column at any time' });
     });
 
-    test('should not allow moving cards out of the DONE column', () => {
-        expect(canMoveCard(boardData, 'done', 'doing')).toBe(false);
-        expect(canMoveCard(boardData, 'done', 'todo')).toBe(false);
+    test('should not allow moving a card from DONE to another column', () => {
+        expect(canMoveCard(boardData, 'done', 'doing')).toEqual({ canMove: false, error: 'Once in DONE, cards cannot go back' });
+        expect(canMoveCard(boardData, 'done', 'todo')).toEqual({ canMove: false, error: 'Cards can only be moved by one column in any direction' });
     });
 });
