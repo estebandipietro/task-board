@@ -24,7 +24,7 @@ describe('Board', () => {
             getBoardFromLocalStorage: () => testData,
         }));
 
-        const { getByText } = render(<Board data={testData} />);
+        const { getByText } = render(<Board />);
 
         // Check if column titles are rendered
         expect(getByText('BACKLOG')).toBeInTheDocument();

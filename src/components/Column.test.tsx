@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, test, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Column from './Column';

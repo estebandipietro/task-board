@@ -28,6 +28,7 @@ class TwoCardLimitMoveStrategy implements MoveStrategy {
 }
 
 class NoBackMoveStrategy implements MoveStrategy {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     execute(_board: BoardType, sourceColumnId: string, _destinationColumnId: string): { canMove: boolean, error: string } {
         if (sourceColumnId === 'done') {
             return { canMove: false, error: 'Once in DONE, cards cannot go back' };
