@@ -1,6 +1,6 @@
-`npm run dev`: run the repo in dev mode
-`npm run test`: run the test suite
-`npm run coverage`: run test coverage
+- `npm run dev`: run the repo in dev mode
+- `npm run test`: run the test suite
+- `npm run coverage`: run test coverage
 
 # Tasks Board
 Using React, develop a Board with 4 columns:  `BACKLOG` `TODO` `DOING` `DONE`
